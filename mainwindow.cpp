@@ -27,7 +27,18 @@ void MainWindow::showTime()
     auto elapsed =etimer.elapsed();
     auto c=countdown.addMSecs(-elapsed);
     QString timestr = c.toString("mm:ss");
-    ui->lcdNumber->display(timestr);
+    if(timestr=="00:00")
+        {
+            timer->stop();
+             qDebug()<<"Timer Out";
+            ui->lcdNumber->display(timestr);
+        }
+        else
+        {
+            ui->lcdNumber->display(timestr);
+            qDebug()<<"Timer ENter";
+
+        }
 }
 
 void MainWindow::on_pushButton_clicked()
