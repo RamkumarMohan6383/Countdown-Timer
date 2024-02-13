@@ -1,30 +1,31 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QMainWindow>
-#include <QElapsedTimer>
+#include "dialog.h"
 
-extern QTimer *timer;
-extern QElapsedTimer etimer;
-
-namespace Ui {
-class MainWindow;
-}
+class Dialog; // Forward declaration
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    void Call();
 
 private slots:
     void on_pushButton_clicked();
 
-    void showTime();
+
 
 private:
     Ui::MainWindow *ui;
+    Dialog * dialog;
 };
-
 #endif // MAINWINDOW_H

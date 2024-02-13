@@ -1,20 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QTimer>
+#include "dialog.h"
 #include <QTime>
+#include <QTimer>
 #include <QDebug>
-#include<QElapsedTimer>
-
-QElapsedTimer etimer;
-QTimer* timer = new QTimer();
-auto countdown= QTime(0,0,30);
-
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+    , dialog (nullptr) // Initialize dialog pointer to nullptr
 {
     ui->setupUi(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(showTime()));
 }
 
 MainWindow::~MainWindow()
@@ -22,28 +17,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showTime()
-{
-    auto elapsed =etimer.elapsed();
-    auto c=countdown.addMSecs(-elapsed);
-    QString timestr = c.toString("mm:ss");
-    if(timestr=="00:00")
-        {
-            timer->stop();
-             qDebug()<<"Timer Out";
-            ui->lcdNumber->display(timestr);
-        }
-        else
-        {
-            ui->lcdNumber->display(timestr);
-            qDebug()<<"Timer ENter";
-
-        }
-}
 
 void MainWindow::on_pushButton_clicked()
 {
-    etimer.start();
-    timer->start(1000);
+    int time = ui->lineEdit->text().toInt(); // Use lowercase for variable names
+       dialog = new Dialog(this,time, this); // Pass countdown time to Dialog constructor
+       dialog->show();
+       etimer.start();
+       timer->start(1000);
 }
 
+void MainWindow::Call()
+{
+    qDebug()<<"Timer End...";
+}
