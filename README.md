@@ -1,7 +1,11 @@
 # Countdown-Timer
 
-Pre set Time 0.30 sec
+Set Seconds in the lineEdit 
 
-Click countdown start Button 
+Click Start timer with Sec dialog
 
-![countdown](https://user-images.githubusercontent.com/95962773/210070299-65b996e0-41f9-489a-976a-6237068041c3.JPG)
+![image](https://github.com/RamkumarMohan6383/Countdown-Timer/assets/95962773/05dfb677-9fa9-47a8-a6ea-b490fbfc6a9d)
+
+![image](https://github.com/RamkumarMohan6383/Countdown-Timer/assets/95962773/3eb72a7c-5f27-4afd-adde-c0467492d5a3)
+
+The Timer 00.00  than hide the sec dialog 
